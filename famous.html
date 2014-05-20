@@ -9,8 +9,8 @@
 </body>
 
 <template name="layout">
-  {{>famous template='yieldFooter' modifier='inFront' size='undefined,50'}}
-  {{>famous template='yieldMain' size='undefined,undefined'}}
+  {{>famous template='yieldFooter' modifier='inFront' size='[undefined,50]'}}
+  {{>famous template='yieldMain' size='[undefined,undefined]'}}
 </template>
 
 <template name="yieldMain">
@@ -60,29 +60,31 @@
 </template>
 
 <template name="home">
-  {{>famous template='_home' size='undefined,300'}}
+  {{>famous template='_home' size='[undefined,300]'}}
 </template>
 
 <template name="_home">
-  <h1>Welcome to <br> Famous Meteor Leaderboard</h1>
+  <h1>Welcome to <br> Leaderboard</h1>
 </template>
 
 <template name="leaderboard">
-  {{#famous view='Scrollview' size='undefined,undefined' players=players}}
-    {{#famousEach data=../players size='undefined,100'}}
-      {{>player}}
+  {{#famous view='Scrollview' size="undefined,undefined" players=players}}
+    {{#famousEach players}}
+      {{> famous template='player'}}
     {{/famousEach}}
   {{/famous}}
 </template>
 
 <template name="player">
-  <div class="item {{selected}} ">
-    <span class="name">{{name}} - <b>{{score}}</b></span>
-  </div>
+  {{#famous}}
+    <div class="player {{selected}} ">
+      <span class="name">{{name}} - <b>{{score}}</b></span>
+    </div>
+  {{/famous}}
 </template>
 
 <template name="loading">
-  {{#famous size='100,100'}}
+  {{#famous size='[100,100]'}}
     <h1>loading data</h1>
   {{/famous}}
 </template>

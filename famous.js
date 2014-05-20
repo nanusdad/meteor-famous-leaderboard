@@ -10,13 +10,16 @@ if (Meteor.isClient) {
     }
   });
 
+  Meteor.subscribe('players');
+
   Router.map(function() {
     this.route('home', { path: '/' });
     this.route('loading', { path: '/loading' });
     this.route('leaderboard', { 
       path: '/leaderboard', 
       waitOn: function () {
-        return Meteor.subscribe('players');
+        // return Meteor.subscribe('players');
+        console.log('players');
       },
       yieldTemplates: { 'leader_footer': {to: 'footer'} }
     });
